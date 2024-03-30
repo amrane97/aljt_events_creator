@@ -13,6 +13,10 @@ public interface EvenementRepository extends JpaRepository<EvenementEntity, Inte
     EvenementEntity findByTitle(String title);
 
     @Modifying
+    @Query("insert values into ()")
+    EvenementEntity sauvegarder();
+
+    @Modifying
     @Query("UPDATE evenement e SET e.title = :title, e.description = :description WHERE e.id = :id")
     EvenementEntity updateEvent(@Param("id") int id, @Param("title") String title, @Param("description") String description);
 }
